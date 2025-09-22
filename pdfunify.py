@@ -11,11 +11,55 @@ class PDFUnificador:
     def __init__(self, root):
         self.root = root
         self.root.title("PDF Unify")
-        self.root.geometry("600x500")
-        self.root.minsize(500, 400)
+        self.root.geometry("750x600")
+        self.root.minsize(750, 600)
         
         # Lista para armazenar caminhos dos arquivos
         self.lista_arquivos = []
+
+        self.mostrar_tela_autenticacao_forms()
+
+    def mostrar_tela_autenticacao_forms(self):
+        """Mostra instrução e abre Microsoft Forms para registro"""
+        self.frame = tk.Frame(self.root, bg='#f0f0f0')
+        self.frame.pack(fill=tk.BOTH, expand=True, padx=100, pady=150)
+        
+        label = tk.Label(self.frame, text="Para acessar, clique abaixo e informe seu e-mail", font=("Arial", 12), bg='#f0f0f0')
+        label.pack(pady=10)
+        
+        btn_abrir_forms = tk.Button(self.frame, text="Abrir Formulário de Login", command=self.abrir_forms, bg='#0078D4', fg='white', padx=20, pady=10)
+        btn_abrir_forms.pack(pady=10)
+        
+        # Botão Continuar: criado, mas não packado ainda (será após delay)
+        self.btn_continuar = tk.Button(self.frame, text="Continuar para o APP", command=self.prosseguir_apos_forms, bg='#4CAF50', fg='white', padx=20, pady=10, state=tk.DISABLED)
+        
+        # Inicia o delay de segundos automaticamente ao carregar a tela
+        self.root.after(15000, self.mostrar_btn_continuar)  # 5000 ms = 5 segundos;
+        
+        rodape = tk.Label(
+                self.root,
+                text="TEXTO DO RODAPÉ",
+                font=("Arial", 8),
+            fg="#888888",
+            bg='#f0f0f0'
+            )
+        rodape.pack(side=tk.BOTTOM, anchor=tk.E, padx=10, pady=5) 
+
+    def abrir_forms(self):
+        forms_url = "https://forms.office.com/r/SeuFormID"  #URL do seu formulário
+        webbrowser.open(forms_url)
+        messagebox.showinfo("Instrução", "Preencha o formulário no navegador e volte aqui para continuar.")
+
+    def mostrar_btn_continuar(self):
+        """Mostra e habilita o botão Continuar após delay"""
+        self.btn_continuar.config(state=tk.NORMAL)  # Habilita o botão
+        self.btn_continuar.pack(pady=10)  # Exibe no frame
+
+
+    def prosseguir_apos_forms(self):
+        # Limpa tela e prossegue para a interface principal
+        for widget in self.root.winfo_children():
+            widget.destroy()
         
         # Configurar estilo
         self.configurar_estilo()
@@ -180,13 +224,12 @@ class PDFUnificador:
         )
         self.status_label.pack(pady=(5, 0))
 
-        # Rodapé com créditos
         rodape = tk.Label(
             self.root,
-            text="PDF Unifier v1.0",  # Substituído por versão genérica
+            text="TEXTO DO RODAPÉ",
             font=("Arial", 8),
-            fg="#888888",
-            bg='#f0f0f0'
+        fg="#888888",
+        bg='#f0f0f0'
         )
         rodape.pack(side=tk.BOTTOM, anchor=tk.E, padx=10, pady=5)
     
@@ -375,8 +418,7 @@ class PDFUnificador:
             # Esconder progresso e mostrar sucesso
             self.root.after(0, self.esconder_progresso)
             self.root.after(0, self.atualizar_status, 
-                          f"PDF salvo com sucesso!",
-                          'green')
+                          f"PDF salvo com sucesso!", 'green')
             self.root.after(0, messagebox.showinfo, "Sucesso", 
                           f"PDF unificado salvo em:\n{caminho_saida}")
             
