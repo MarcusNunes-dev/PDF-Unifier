@@ -1,4 +1,4 @@
-# PDF Unifier
+# PDF Unify
 
 Uma ferramenta **desktop simples e segura** para unificar arquivos PDF, desenvolvida em **Python** com interface gráfica **Tkinter**.
 
