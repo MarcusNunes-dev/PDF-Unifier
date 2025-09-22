@@ -32,7 +32,6 @@ Inclui um fluxo de *"autenticação"* via **Microsoft Forms** para registro de a
 -   `tkinter` (nativo) – Interface gráfica.
 -   `PyPDF2` – Manipulação de PDFs.
 -   `threading` (nativo) – Processamento assíncrono.
--   `logging`, `datetime` (nativos) – Logs de acesso.
 -   `os`, `pathlib` (nativos) – Gerenciamento de arquivos.
 -   `webbrowser` (nativo) – Abertura do Microsoft Forms.
 -   `filedialog`, `messagebox`, `ttk` (submódulos `tkinter`) – Diálogos e progresso.
