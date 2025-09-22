@@ -1,0 +1,12 @@
+# ========== Dependências externas (instalar com pip) ==========
+PyPDF2>=3.0.0
+tk   # Tkinter - em alguns ambientes não vem pré-instalado
+
+# ========== Bibliotecas nativas do Python (já inclusas) ==========
+# threading   -> processamento assíncrono
+# logging     -> logs de execução
+# datetime    -> manipulação de datas
+# os          -> interação com sistema operacional
+# pathlib     -> manipulação de caminhos de arquivos
+# webbrowser  -> abrir links no navegador (ex.: Microsoft Forms)
+# tkinter.filedialog, tkinter.messagebox, tkinter.ttk -> submódulos do Tkinter
